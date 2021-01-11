@@ -53,6 +53,14 @@ class _ViewTodoState extends State<ViewTodo> {
                                 vmList.fetchTodos();
                               },
                             ),
+                            // No delete validation, it's a waste of time for now
+                            GestureDetector(
+                              child: Icon(Icons.delete),
+                              onTap: () async {
+                                await todo.delete();
+                                vmList.fetchTodos();
+                              },
+                            ),
                           ],
                         ),
                       );
