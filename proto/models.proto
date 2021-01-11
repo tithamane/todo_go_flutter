@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+option go_package = "github.com/tithamane/todo_go_flutter/api/proto";
+
+message Todo {
+    string uid = 1;
+    string body = 2;
+    bool done = 3;
+    int64 create_at = 4;
+}
+
+message TodoParams {
+    string uid = 1;
+}
+
+message RequestResult {
+    bool success = 1;
+}
+
+message TodoList {
+    repeated Todo results = 1;
+    uint32 count = 2;
+}
+
+message TodoFilter {}
+
+service TodoService {
+    rpc GetAll(TodoFilter) returns (TodoList) {};
+    rpc Get(TodoParams) returns (Todo) {};
+
+    rpc Add(Todo) returns (RequestResult) {};
+    rpc Remove(TodoParams) returns (RequestResult) {};
+    rpc Update(Todo) returns (RequestResult) {};
+}
